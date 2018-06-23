@@ -1,0 +1,28 @@
+{
+  "name": "organizer-app",
+  "version": "1.0.0",
+  "description": "A project for the clean code course",
+  "main": "index.js",
+  "scripts": {
+    "test": "not-yet",
+    "build": "webpack"
+  },
+  "keywords": [
+    "organize"
+  ],
+  "author": "Nikola Shahpazov",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.11",
+    "ts-loader": "^4.4.1",
+    "typescript": "^2.9.2",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.2.4",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.8"
+  },
+  "dependencies": {
+    "vue-class-component": "^6.2.0"
+  }
+}
