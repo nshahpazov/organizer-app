@@ -3,6 +3,18 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: './src/index.ts',
+  plugins: [
+    new webpack.NormalModuleReplacementPlugin(/typeorm$/, function (result) {
+      result.request = result.request.replace(/typeorm/, 'typeorm/browser');
+    })
+  ],
+
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
+
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
