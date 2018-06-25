@@ -13,7 +13,8 @@ import TaskComponent from './TaskComponent';
     column: TaskColumn
   },
   template: `
-    <div v-if="column">
+    <div class="column" v-if="column">
+      COLUMN NAME: {{ column.name}}
       <input type="text" v-model="newTaskTitle" placeholder="Task Title" />
       <button class="btn btn-primary" v-on:click="createNewTask">Create new Task</button>
       <div>
@@ -35,6 +36,7 @@ export default class ColumnComponent extends Vue {
   async createNewTask() {
     const task = new Task();
     task.title = this.newTaskTitle;
+    task.todos = [];
     this.column.tasks.push(task);
 
     await this.columnService.save(this.column);

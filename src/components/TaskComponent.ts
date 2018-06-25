@@ -14,6 +14,7 @@ import TodoComponent from './TodoComponent';
   },
   template: `
     <div v-if="task">
+      TASK TITLE: {{ task.title }}
       <input type="text" v-model="newTodoName" placeholder="Todo name" />
       <button class="btn btn-primary" v-on:click="createNewTodo">Create new Todo</button>
       <div>
@@ -35,6 +36,7 @@ export default class TaskComponent extends Vue {
   async createNewTodo() {
     const todo = new Todo();
     todo.name = this.newTodoName;
+
     this.task.todos.push(todo);
 
     await this.taskService.save(this.task);

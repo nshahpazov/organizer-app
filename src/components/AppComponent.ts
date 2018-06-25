@@ -18,9 +18,8 @@ import BoardComponent from './BoardComponent';
           Login
         </button>
       </div>
-      <p>{{user.username}}</p>
       <div v-if="user.username">
-        {{ user.username }}
+        logged in as {{ user.username }}
         <div>
           <input type="text" v-model="newBoardName" />
           <button v-on:click="createBoard">Create Board</button>

@@ -14,16 +14,16 @@ import ColumnComponent from './ColumnComponent';
     board: Board
   },
   template: `
-  <div v-if="board">
-    <div>
-       NAME: {{ board.name }}
-       <input type="text" v-model="newColumnName" />
-       <button v-on:click="addColumn">
-         Add Column
-       </button>
-       <column v-for="column in board.columns" :column="column" />
+    <div v-if="board">
+      BOARD NAME: {{ board.name }}
+      <div>
+        <input type="text" v-model="newColumnName" />
+        <button v-on:click="addColumn">Add Column</button>
+      </div>
+      <div>
+        <column v-for="column in board.columns" :column="column" />
+      </div>
     </div>
-  </div>
   `
 })
 export default class BoardComponent extends Vue {
@@ -41,6 +41,7 @@ export default class BoardComponent extends Vue {
     const column = new TaskColumn();
     column.name = this.newColumnName;
     this.board.columns.push(column);
+    column.tasks = [];
 
     await this.boardService.save(this.board);
   }
