@@ -1,15 +1,22 @@
 // src/index.ts
 import 'reflect-metadata';
 import 'typeorm/browser';
+import 'bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Vue from 'vue';
 import { createConnection } from 'typeorm';
 
 import HelloComponent from './components/HelloComponent';
+import AppComponent from './components/AppComponent';
 import BoardComponent from './components/BoardComponent';
 
-import { Author } from './entity/Author';
-import { TodoItem } from './entity/TodoItem';
+
+import { User } from './entity/User';
+import { Todo } from './entity/Todo';
+import { Task } from './entity/Task';
+import { TaskColumn } from './entity/TaskColumn';
+import { Board } from './entity/Board';
 import { Category } from './entity/Category';
 
 createConnection({
@@ -17,9 +24,12 @@ createConnection({
   location: 'test',
   autoSave: true,
   entities: [
-    Author,
-    TodoItem,
-    Category
+    Todo,
+    Task,
+    Category,
+    TaskColumn,
+    Board,
+    User
   ],
   logging: ['query', 'schema'],
   synchronize: true
@@ -27,18 +37,9 @@ createConnection({
   Vue.prototype.connection = connection;
 
   let v = new Vue({
-      el: '#app',
-      template: `
-      <div>
-          Name: <input v-model='name' type='text'>
-          <board-component :name='name' :initialEnthusiasm='5' />
-      </div>
-      `,
-      data: {
-        name: 'World',
-
-      },
-      components: { BoardComponent }
+    el: '#app',
+    template: `<div><app-component /></div>`,
+    components: { AppComponent, BoardComponent }
   });
 
 }).catch(error => console.log('Error: ', error));
