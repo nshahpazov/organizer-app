@@ -1,15 +1,42 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
+import { TaskService } from '../services/TaskService';
+import { Task } from '../entity/Task';
+import { Todo } from '../entity/Todo';
+
+import TodoComponent from './TodoComponent';
+
 @Component({
-  template: '<button @click="onClick">Click!</button>'
+  components: { 'todo': TodoComponent },
+  props: {
+    task: Task
+  },
+  template: `
+    <div v-if="task">
+      <input type="text" v-model="newTodoName" placeholder="Todo name" />
+      <button class="btn btn-primary" v-on:click="createNewTodo">Create new Todo</button>
+      <div>
+        <todo v-for="todo in task.todos" :todo="todo" />
+      </div>
+    </div>
+  `
 })
 export default class TaskComponent extends Vue {
-  // Initial data can be declared as instance properties
-  message: string = 'TaskComponent!';
+  task: Task;
+  newTodoName = '';
+  taskService: TaskService;
 
-  // Component methods can be declared as instance methods
-  onClick (): void {
-    window.alert(this.message);
+  constructor() {
+    super();
+    this.taskService = new TaskService(this.connection);
+  }
+
+  async createNewTodo() {
+    const todo = new Todo();
+    todo.name = this.newTodoName;
+    this.task.todos.push(todo);
+
+    await this.taskService.save(this.task);
   }
 }

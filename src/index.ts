@@ -7,7 +7,6 @@ import 'bootstrap';
 import Vue from 'vue';
 import { createConnection } from 'typeorm';
 
-import HelloComponent from './components/HelloComponent';
 import AppComponent from './components/AppComponent';
 import BoardComponent from './components/BoardComponent';
 

@@ -4,6 +4,7 @@ import { User } from '../entity/User';
 import { Board } from '../entity/Board';
 import { UserService } from '../services/UserService';
 import { BoardService } from '../services/BoardService';
+
 import BoardComponent from './BoardComponent';
 
 
@@ -11,18 +12,15 @@ import BoardComponent from './BoardComponent';
   components: { 'board': BoardComponent },
   template: `
     <div>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga officia in earum. Vitae quidem placeat sint, repellendus libero voluptatem ex temporibus tempore dignissimos ipsa vel voluptatibus iste laborum nulla. Dolorem?
-
       <div v-if="!user.name">
         <input type="text" placeholder="Username" v-model="username" />
         <button class="btn btn-primary" v-on:click="login">
           Login
         </button>
       </div>
-
-      <div v-if="user.name">
-        {{ user.name }}
-        current board:  user.currentBoard.name
+      <p>{{user.username}}</p>
+      <div v-if="user.username">
+        {{ user.username }}
         <div>
           <input type="text" v-model="newBoardName" />
           <button v-on:click="createBoard">Create Board</button>
@@ -30,7 +28,7 @@ import BoardComponent from './BoardComponent';
         <button v-for="board in user.boards" v-on:click="setCurrentBoard(board)">
           {{ board.name }}
         </button>
-        <board :board="user.boards[0]" />
+        <board :board="user.currentBoard" />
       </div>
     </div>
   `

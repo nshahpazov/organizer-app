@@ -13,5 +13,6 @@ export class User {
   boards: Board[];
 
   @OneToOne(type => Board, board => board.custodian, { eager: true, cascade: true })
+  @JoinColumn()
   currentBoard: Board;
 }

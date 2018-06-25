@@ -6,7 +6,10 @@ import { TaskColumn } from '../entity/TaskColumn';
 
 import { BoardService } from '../services/BoardService';
 
+import ColumnComponent from './ColumnComponent';
+
 @Component({
+  components: { 'column': ColumnComponent },
   props: {
     board: Board
   },
@@ -18,9 +21,7 @@ import { BoardService } from '../services/BoardService';
        <button v-on:click="addColumn">
          Add Column
        </button>
-       <div v-for="column in board.columns">
-        {{ column.name }}
-       </div>
+       <column v-for="column in board.columns" :column="column" />
     </div>
   </div>
   `

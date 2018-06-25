@@ -1,4 +1,5 @@
 import { User } from '../entity/User';
+import { Board } from '../entity/Board';
 
 export class UserService {
   private repository;
@@ -21,7 +22,12 @@ export class UserService {
 
   createUser(username) {
       const user = new User();
+      const board = new Board();
+
       user.username = username;
+      board.name = 'First Board';
+
+      user.currentBoard = board;
 
       return this.save(user);
   }
