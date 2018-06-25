@@ -1,15 +1,14 @@
 // src/index.ts
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'reflect-metadata';
 import 'typeorm/browser';
 import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Vue from 'vue';
 import { createConnection } from 'typeorm';
 
 import AppComponent from './components/AppComponent';
 import BoardComponent from './components/BoardComponent';
-
 
 import { User } from './entity/User';
 import { Todo } from './entity/Todo';
@@ -22,14 +21,7 @@ createConnection({
   type: 'sqljs',
   location: 'test',
   autoSave: true,
-  entities: [
-    Todo,
-    Task,
-    Category,
-    TaskColumn,
-    Board,
-    User
-  ],
+  entities: [ Todo, Task, Category, TaskColumn, Board, User ],
   logging: ['query', 'schema'],
   synchronize: true
 }).then(async connection => {
